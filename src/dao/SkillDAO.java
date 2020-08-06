@@ -8,7 +8,7 @@ import model.Skill;
 import utility.ConnectionManager;
 
 public class SkillDAO {
-	public Skill getSkillBylD(Long id) throws ClassNotFoundException, SQLException{
+	public Skill getSkillBylD(Long id) throws Exception{
 		PreparedStatement ps = ConnectionManager.getConnection().prepareStatement("SELECT * FROM SKILL");
 		ResultSet rs = ps.executeQuery();
 		// Skill skill = null;

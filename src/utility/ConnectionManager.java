@@ -3,25 +3,24 @@ package utility;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionManager {
-	public static Connection getConnection() throws ClassNotFoundException, SQLException{
+	public static Connection getConnection() throws Exception {
 		
 		//Generating property object and obtaining info from loadpropertiesFile() method
 		Properties prop = null;
-		try {
-			prop = loadPropertiesFile();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		prop = loadPropertiesFile();
+		
+		String driver = prop.getProperty("driver");
+		String url = prop.getProperty("url");
+		String username = prop.getProperty("username");
+		String password = prop.getProperty("password");
 		
 		//Establishing connection
-		Class.forName(prop.getProperty("driver"));
+		Class.forName(driver);
 		Connection con = null;
-		con = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("username"),prop.getProperty("password"));
+		con = DriverManager.getConnection(url,username,password);
 		
 		return con;
 	}

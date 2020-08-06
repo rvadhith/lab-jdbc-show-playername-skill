@@ -15,13 +15,12 @@ import utility.ConnectionManager;
 
 public class PlayerDAO{
 	static List<Player> list = new ArrayList<Player>();
-	public List<Player> getAllPlayers() throws ClassNotFoundException, SQLException{
+	public List<Player> getAllPlayers() throws Exception{
 		String sql = "SELECT * FROM PLAYER";
-		System.out.println("Problem is with connection");
 		Connection con = ConnectionManager.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
-		System.out.println("No problem with connection");
 		ResultSet rs = ps.executeQuery();
+		
 		Skill skill = null;
 		while(rs.next()){			
 				long playerId = rs.getLong(1);
